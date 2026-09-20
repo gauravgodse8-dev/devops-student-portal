@@ -6,16 +6,17 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building DevOps Student Portal...'
+
                 sh 'python3 --version'
-                sh 'pip3 --version'
-                sh 'pip3 install -r requirements.txt'
+                sh 'python3 -m venv venv'
+                sh 'venv/bin/pip install -r requirements.txt'
             }
         }
 
         stage('Test') {
             steps {
                 echo 'Running tests...'
-                sh 'pytest'
+                sh 'venv/bin/pytest'
             }
         }
     }
